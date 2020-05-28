@@ -2,8 +2,11 @@ package eu.gebes.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
+import eu.gebes.utils.OptionSelector;
 import foundation.icon.icx.KeyWallet;
 import foundation.icon.icx.Wallet;
 import foundation.icon.icx.crypto.KeystoreException;
@@ -21,21 +24,20 @@ public class WalletLoader {
 
     public Wallet selectWallet() {
 
-        final File[] selectables = walletsCollection.listFiles();
+        final File[] selectables =  Objects.requireNonNull(walletsCollection.listFiles());
 
-        for (int i = 0; i < selectables.length; i++)
-            System.out.println("\t" + i + ": " + selectables[i].getName());
+        OptionSelector<File> selector = new OptionSelector<>();
 
-        int selectedWallet = ConsoleUtils.scanIntRange("Select a wallet: ", 0, selectables.length-1);
+        Arrays.stream(selectables).filter(file -> !file.isDirectory()).forEachOrdered((file -> selector.addOption(file.getName(), file)));
 
-        // ! If you selected a default wallet, the name of the file is the password
-        System.out.print("Enter the password for the wallet: ");
-        final String password = new Scanner(System.in).nextLine();
+        File selected = selector.select("Select a wallet: ");
+
+        // ! Its more handy to save the password in the filename
 
         try {
-            return KeyWallet.load(password, selectables[selectedWallet]);
+            return KeyWallet.load(selected.getName(), selected);
         } catch (IOException | KeystoreException e) {
-            System.out.println("Couldnt load your wallet :c");
+            System.out.println("Couldnt load your wallet. Is the password the filename??");
             throw new RuntimeException(e);
         }
 

@@ -19,7 +19,7 @@ import eu.gebes.utils.ConsoleUtils;
 public final class App {
 
 
-    final public static Address SCORE_ADDRESS = new Address("cx08e075d0585ac9d09615d7be8ec723344a95b3d5");
+    final public static Address SCORE_ADDRESS = new Address("cx533780a77b640124eb594ef91212d205c3e42607");
 
     public static void main(final String[] args) throws IOException, InvalidAlgorithmParameterException,
         NoSuchAlgorithmException, NoSuchProviderException, KeystoreException, InterruptedException {

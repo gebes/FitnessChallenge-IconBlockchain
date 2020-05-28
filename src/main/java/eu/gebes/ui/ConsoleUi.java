@@ -4,6 +4,7 @@ package eu.gebes.ui;
 import eu.gebes.score.Challenger;
 import eu.gebes.score.ScoreCaller;
 import eu.gebes.utils.ConsoleUtils;
+import eu.gebes.utils.DateUtils;
 import eu.gebes.utils.OptionSelector;
 import foundation.icon.icx.data.Address;
 import lombok.NonNull;
@@ -44,10 +45,29 @@ public class ConsoleUi {
             System.out.println("You have one Challenger");
             System.out.println("  > Address: " + challenger.getAddress());
             System.out.println("  > Bet: " + challenger.getBet());
+            System.out.println("  > StartTime: " + DateUtils.convertUnixSecondsToDate(challenger.getBet()));
+            System.out.println("  > Ends: " + DateUtils.convertUnixSecondsToDate(challenger.getBet().add(challenger.getDuration())));
         }
 
 
+        var selector = new OptionSelector<Runnable>();
+
+        selector.addOption("Accet", () -> accept(challenger));
+        selector.addOption("Deny", this::deny);
+
+
+        selector.select("Choose an otpion: ").run();
+
     }
+
+    public void accept(Challenger challenger) {
+        scoreCaller.acceptChallenge(challenger);
+    }
+
+    public void deny() {
+        scoreCaller.denyChallenge();
+    }
+
 
     public void challengeSomeone() {
 
@@ -55,8 +75,12 @@ public class ConsoleUi {
         Address address = new Address(new Scanner(System.in).nextLine());
         System.out.print("Enter your bet: ");
         BigInteger bet = new BigInteger(new Scanner(System.in).nextLine());
+        System.out.print("Enter StartTime in UNIX & Seconds: ");
+        BigInteger startTime = new BigInteger(new Scanner(System.in).nextLine());
+        System.out.print("Enter Duration in Seconds: ");
+        BigInteger duration = new BigInteger(new Scanner(System.in).nextLine());
 
-        scoreCaller.challenge(address, bet);
+        scoreCaller.challenge(address, bet, startTime, duration);
 
 
     }

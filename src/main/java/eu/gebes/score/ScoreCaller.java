@@ -7,6 +7,8 @@ import foundation.icon.icx.*;
 import foundation.icon.icx.data.Address;
 import foundation.icon.icx.data.Bytes;
 import foundation.icon.icx.data.TransactionResult;
+import foundation.icon.icx.transport.jsonrpc.RpcItemCreator;
+import foundation.icon.icx.transport.jsonrpc.RpcObject;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -25,9 +27,60 @@ public class ScoreCaller {
 
     Helper helper = new Helper();
 
-    /**
-     * @return "Bet:challengerAddress"
-     */
+
+    public void challenge(Address target, BigInteger bet, BigInteger startTime, BigInteger duration) {
+
+        var transaction = TransactionBuilder.newBuilder()
+                .nid(new BigInteger("3"))
+                .from(getMyWallet().getAddress())
+                .to(scoreAddress)
+                .value(bet)
+                .stepLimit(new BigInteger("10000000"))
+                .nonce(new BigInteger("1"))
+                .call("challenge")
+                .params(new RpcObject.Builder().put("target", RpcItemCreator.create(target)).put("startTime", RpcItemCreator.create(startTime)).put("duration", RpcItemCreator.create(duration)).build())
+                .build();
+
+
+        var result = helper.getUnsignedTransactionResult(transaction, getMyWallet());
+        helper.printResult(result);
+    }
+
+
+    public void acceptChallenge(Challenger challenger) {
+
+        var transaction = TransactionBuilder.newBuilder()
+                .nid(new BigInteger("3"))
+                .from(getMyWallet().getAddress())
+                .to(scoreAddress)
+                .value(challenger.getBet())
+                .stepLimit(new BigInteger("10000000"))
+                .nonce(new BigInteger("1"))
+                .call("accept")
+                .build();
+
+
+        var result = helper.getUnsignedTransactionResult(transaction, getMyWallet());
+        helper.printResult(result);
+    }
+
+    public void denyChallenge() {
+
+        var transaction = TransactionBuilder.newBuilder()
+                .nid(new BigInteger("3"))
+                .from(getMyWallet().getAddress())
+                .to(scoreAddress)
+                .stepLimit(new BigInteger("10000000"))
+                .nonce(new BigInteger("1"))
+                .call("deny")
+                .build();
+
+
+        var result = helper.getUnsignedTransactionResult(transaction, getMyWallet());
+        helper.printResult(result);
+    }
+
+
     public Challenger getMyChallenger() {
 
         var call = new Call.Builder().from(myWallet.getAddress()).to(scoreAddress).method("get_my_challengers")
@@ -39,37 +92,11 @@ public class ScoreCaller {
             if (result.equals("None"))
                 return null;
 
-            String[] split = result.split(":", 2);
-            return new Challenger(new BigInteger(split[0]), new Address(split[1]));
+            String[] split = result.split(":", 4);
+            return new Challenger(new BigInteger(split[0]), new Address(split[1]), new BigInteger(split[2]), new BigInteger(split[3]));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void challenge(Address target, BigInteger bet) {
-
-        var transaction = TransactionBuilder.newBuilder()
-                .nid(new BigInteger("3"))
-                .from(getMyWallet().getAddress())
-                .to(scoreAddress)
-                .value(bet)
-                .stepLimit(new BigInteger("10000000"))
-                .nonce(new BigInteger("1"))
-                .call("challenge")
-                // .params(new RpcObject.Builder().put("target", RpcItemCreator.create(target)).build())
-                .build();
-
-
-        var result = helper.getUnsignedTransactionResult(transaction, getMyWallet());
-
-
-        if(helper.didFail(result)){
-            // Failure Object is not null when there is an error
-            System.out.println("Transaction failed with message: " + result.getFailure().getMessage());
-            return;
-        }
-
-        System.out.println("Transaction finished successfully");
     }
 
 
@@ -78,7 +105,17 @@ public class ScoreCaller {
      */
     class Helper {
 
-        public boolean didFail(TransactionResult result){
+        public void printResult(TransactionResult result) {
+            if (helper.didFail(result)) {
+                // Failure Object is not null when there is an error
+                System.out.println("Transaction failed with message: " + result.getFailure().getMessage());
+                return;
+
+            }
+            System.out.println("Transaction finished successfully");
+        }
+
+        public boolean didFail(TransactionResult result) {
             return result.getFailure() != null;
         }
 

@@ -14,6 +14,7 @@ public class Challenger {
 
     @NonNull BigInteger bet;
     @NonNull Address address;
+    @NonNull BigInteger startTime, duration;
 
 
 }
