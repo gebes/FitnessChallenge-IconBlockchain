@@ -2,9 +2,9 @@
  Challenge your friend for a Fitness Challenge
 
 ## How to use?
-*Note: In the wallets folder, there are 2 wallets for the testnet. The passwords are simply the file name.*. 
-*Note: This project runs only on the testnet*
-*Note: As I understood, if you want to bet 1 ICX, you have to bet 1000000000000000000, maybe I am wrong?*
+*Note: In the wallets folder, there are 2 wallets for the testnet. The passwords are simply the file name.*  
+*Note: This project runs only on the testnet*  
+*Note: As I understood, if you want to bet 1 ICX, you have to bet 1000000000000000000, maybe I am wrong?*  
 
 1. Run the Java Client and select a wallet
 2. Go to Challenge Someone
