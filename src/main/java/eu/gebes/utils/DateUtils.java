@@ -11,7 +11,7 @@ public class DateUtils {
     public static String convertUnixSecondsToDate(BigInteger unix){
         // Java erwartet Millisekunden anstelle von Sekunden
         var date = new Date(unix.longValue()* 1000L);
-        var dateFormatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        var dateFormatter = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
         return dateFormatter.format(date);
     }
 

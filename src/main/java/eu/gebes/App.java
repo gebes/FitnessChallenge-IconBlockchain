@@ -19,12 +19,9 @@ import eu.gebes.utils.ConsoleUtils;
 public final class App {
 
 
-    final public static Address SCORE_ADDRESS = new Address("cx533780a77b640124eb594ef91212d205c3e42607");
+    final public static Address SCORE_ADDRESS = new Address("cxd504447a3ab01b4682137997270dd98fb6f67d01");
 
-    public static void main(final String[] args) throws IOException, InvalidAlgorithmParameterException,
-        NoSuchAlgorithmException, NoSuchProviderException, KeystoreException, InterruptedException {
-
-        ConsoleUtils.clear();
+    public static void main(final String[] args){
 
         System.out.println("\nWelcome to the FitnessChallenge!");
 

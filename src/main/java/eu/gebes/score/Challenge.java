@@ -8,15 +8,15 @@ import lombok.RequiredArgsConstructor;
 import java.math.BigInteger;
 
 /**
- * * Modelclass if someone challenges you with all the details
+ * * Modelclass for "has_my_target_accepted". So if you challenge someone, and if you want to know if he accepted or not
  */
 @RequiredArgsConstructor
 @Data
-public class Challenger {
+public class Challenge {
 
 
-    @NonNull BigInteger bet;
-    @NonNull Address address;
+    @NonNull boolean accepted;
+    @NonNull Address target;
     @NonNull BigInteger startTime, duration;
 
 

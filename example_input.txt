@@ -1,0 +1,194 @@
+Welcome to the FitnessChallenge!
+Conntected to testnet successfully!
+==================================================
+	1: test1_Account
+	2: test2_Account
+Select a wallet: 1
+Successfully loaded your wallet (hx47dd9217890dc037fc27bfbd74ae647955b79d96)
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 6
+
+Welcome to the FitnessChallenge!
+Conntected to testnet successfully!
+==================================================
+	1: test1_Account
+	2: test2_Account
+Select a wallet: 2
+Successfully loaded your wallet (hx3876daa97c01a3d6514a9d46b33d116759fae8cd)
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 1
+Currently you do not have any challenger :c
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 2
+Enter the target address: hx47dd9217890dc037fc27bfbd74ae647955b79d96
+Enter your bet: 99
+Enter StartTime in UNIX & Seconds (current is 1590780714 seconds): 1590780814
+Enter Duration in Seconds: 60
+Transaction finished successfully
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 6
+
+Welcome to the FitnessChallenge!
+Conntected to testnet successfully!
+==================================================
+	1: test1_Account
+	2: test2_Account
+Select a wallet: 1
+Successfully loaded your wallet (hx47dd9217890dc037fc27bfbd74ae647955b79d96)
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 1
+99:hx3876daa97c01a3d6514a9d46b33d116759fae8cd:1590780814:60
+You have one Challenger
+  > Address: hx3876daa97c01a3d6514a9d46b33d116759fae8cd
+  > Bet: 99
+  > StartTime: 29.05.2020 09:33:34
+  > Ends: 29.05.2020 09:34:34
+	1: Accet
+	2: Deny
+Choose an otpion: 1
+Transaction finished successfully
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 6
+
+Welcome to the FitnessChallenge!
+Conntected to testnet successfully!
+==================================================
+	1: test1_Account
+	2: test2_Account
+Select a wallet: 2
+Successfully loaded your wallet (hx3876daa97c01a3d6514a9d46b33d116759fae8cd)
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 3
+true:hx47dd9217890dc037fc27bfbd74ae647955b79d96:1590780814:60
+Current state:
+  > Address: hx47dd9217890dc037fc27bfbd74ae647955b79d96
+  > hasAccepted: true
+  > StartTime: 29.05.2020 09:33:34
+  > Ends: 29.05.2020 09:34:34
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 4
+Enter amount of points: 23
+Transaction failed with message: The challenge hasn't started yet.
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 4
+Enter amount of points: 88
+Transaction finished successfully
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 6
+
+Welcome to the FitnessChallenge!
+Conntected to testnet successfully!
+==================================================
+	1: test1_Account
+	2: test2_Account
+Select a wallet: 1
+Successfully loaded your wallet (hx47dd9217890dc037fc27bfbd74ae647955b79d96)
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 4
+Enter amount of points: 4
+Transaction finished successfully
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 4
+Enter amount of points: 4
+Transaction finished successfully
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 4
+Enter amount of points: 4
+Transaction finished successfully
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 4
+Enter amount of points: 5
+Transaction failed with message: The challenge has ended.
+==================================================
+	1: Get my challenger
+	2: Challenge someone
+	3: Has my target accepted?
+	4: Submit Fitness Points (only during challenge)
+	5: Result of the last challenge
+	6: Log Out
+Choose an option: 5
+The person who got challenged lost with 12 points. The challenger won with 88 points.

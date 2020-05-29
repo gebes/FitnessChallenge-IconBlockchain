@@ -1,8 +1,5 @@
 package eu.gebes.score;
 
-import java.io.IOException;
-import java.math.BigInteger;
-
 import foundation.icon.icx.*;
 import foundation.icon.icx.data.Address;
 import foundation.icon.icx.data.Bytes;
@@ -12,6 +9,9 @@ import foundation.icon.icx.transport.jsonrpc.RpcObject;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+
+import java.io.IOException;
+import java.math.BigInteger;
 
 @Data
 @RequiredArgsConstructor
@@ -80,6 +80,51 @@ public class ScoreCaller {
         helper.printResult(result);
     }
 
+    public void submitPoints(BigInteger amount) {
+
+        var transaction = TransactionBuilder.newBuilder()
+                .nid(new BigInteger("3"))
+                .from(getMyWallet().getAddress())
+                .to(scoreAddress)
+                .stepLimit(new BigInteger("10000000"))
+                .nonce(new BigInteger("1"))
+                .call("submit_points")
+                .params(new RpcObject.Builder().put("points", RpcItemCreator.create(amount)).build())
+                .build();
+
+
+        var result = helper.getUnsignedTransactionResult(transaction, getMyWallet());
+        helper.printResult(result);
+    }
+
+    public String getLastChallengeResult(){
+
+        var transaction = TransactionBuilder.newBuilder()
+                .nid(new BigInteger("3"))
+                .from(getMyWallet().getAddress())
+                .to(scoreAddress)
+                .stepLimit(new BigInteger("10000000"))
+                .nonce(new BigInteger("1"))
+                .call("check_if_challenge_ended")
+                .build();
+
+
+        var result = helper.getUnsignedTransactionResult(transaction, getMyWallet());
+
+        if(helper.didFail(result))
+            throw new RuntimeException("Couldn't call checker with error: " + result.getFailure().getMessage());
+
+
+        var call = new Call.Builder().from(myWallet.getAddress()).to(scoreAddress).method("last_challenge_result")
+                .buildWith(String.class);
+
+        try{
+            return iconService.call(call).execute();
+        }catch(IOException e){
+            throw new RuntimeException(e);
+        }
+
+    }
 
     public Challenger getMyChallenger() {
 
@@ -91,9 +136,27 @@ public class ScoreCaller {
 
             if (result.equals("None"))
                 return null;
-
+            System.out.println(result);
             String[] split = result.split(":", 4);
             return new Challenger(new BigInteger(split[0]), new Address(split[1]), new BigInteger(split[2]), new BigInteger(split[3]));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Challenge hasMyTargetAccepted() {
+
+        var call = new Call.Builder().from(myWallet.getAddress()).to(scoreAddress).method("has_my_target_accepted")
+                .buildWith(String.class);
+
+        try {
+            String result = iconService.call(call).execute();
+
+            if (result.equals("None"))
+                return null;
+            System.out.println(result);
+            String[] split = result.split(":", 4);
+            return new Challenge(Boolean.parseBoolean(split[0]), new Address(split[1]), new BigInteger(split[2]), new BigInteger(split[3]));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
