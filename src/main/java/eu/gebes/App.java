@@ -19,7 +19,7 @@ import eu.gebes.utils.ConsoleUtils;
 public final class App {
 
 
-    final public static Address SCORE_ADDRESS = new Address("cxd504447a3ab01b4682137997270dd98fb6f67d01");
+    final public static Address SCORE_ADDRESS = new Address("cx55ab186c429166d35a23838d18747aee28251432");
 
     public static void main(final String[] args){
 
