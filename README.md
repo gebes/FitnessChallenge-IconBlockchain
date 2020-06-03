@@ -15,5 +15,4 @@
 
 ## What did I learn?
 * How to write Python
-* How to call transactions correctly
-* Most importantly: How to write an small Icon Blockchain Application
+* How to write an basic Application on the Icon Blockchain
