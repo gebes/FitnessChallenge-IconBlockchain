@@ -24,3 +24,6 @@ hs_err_pid*
 /.idea/
 /.settings/
 /.project
+/fitness_score/.idea/
+/fitness_score/tests/
+/target/
